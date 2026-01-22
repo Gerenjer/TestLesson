@@ -1,0 +1,10 @@
+<h1>Добавление задачи</h1>
+
+<form methods="post">
+    <input type="text" name="title" placeholder="Введите название задачи..." required>
+    <textarea name="description" placeholder="Введите текст задачи..."></textarea>
+
+    <button type="submit">Добавить задачу</button>
+</form>
+
+<a href="{{ url_for('tasks.get_all_tasks') }}">Вернутья к списку задач</a>
