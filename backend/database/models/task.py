@@ -1,13 +1,10 @@
-from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy.orm import Mapped, mapped_column, declarative_base
+from database.db_settings import db
 
-class Base(declarative_base):
-    pass
 
-class Task(Base):
+class Task(db.Model):
     __tablename__ = 'tasks'
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    title: Mapped[str] = mapped_column(String, nullable=False)
-    description: Mapped[str] = mapped_column(String, nullable=True)
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
     
