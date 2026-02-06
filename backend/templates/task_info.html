@@ -1,0 +1,15 @@
+<{% extends "base.html" %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ task.title }}</h1>
+
+{% if task.description %}
+    <p>{{ task.description }}</p>
+{% else %}
+    <p>Описание отсутствует</p>
+{% endif %}
+
+<a href="{{ url_for('tasks.get_all_tasks') }}">Вернуться к списку задач</a>
+{% endblock %}

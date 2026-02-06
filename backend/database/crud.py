@@ -1,8 +1,8 @@
 from typing import List, Optional, Dict, Any
 from sqlalchemy.exc import SQLAlchemyError
 
-from database.db_settings import db
-from database.models.task import Task
+from backend.database.db_settings import db
+from backend.database.models.task import Task
 
 
 
@@ -13,7 +13,7 @@ def create_task(title, description) -> Task:
     if not title:
         raise ValueError("Title is required")
     
-    task = Task(title, description)
+    task = Task(title=title, description=description)
 
     try:
         db.session.add(task)
@@ -28,7 +28,7 @@ def get_task_or_404(task_id) -> Task:
     return Task.query.get_or_404(task_id)
 
 
-def get_all_tasks() -> List[Task]:
+def get_tasks() -> List[Task]:
     return Task.query.all()
 
 
@@ -51,7 +51,7 @@ def update_task(task_id, title, description) -> Task:
         db.session.rollback()
         raise e
 
-def delete_task(task_id) -> None:
+def delete_tasks(task_id) -> None:
     task = Task.query.get_or_404(task_id)
 
     try:
