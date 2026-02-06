@@ -1,0 +1,38 @@
+.card {
+  border-radius: 14px;
+}
+.navbar-brand {
+  letter-spacing: 0.2px;
+}
+
+.task-card {
+  background: #fff;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.task-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+}
+
+.task-desc {
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.task-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #0d6efd; /* bootstrap primary */
+  margin-top: 6px;
+  flex: 0 0 auto;
+}
+
+.empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(13,110,253,.10);
+  border: 1px solid rgba(13,110,253,.18);
+}

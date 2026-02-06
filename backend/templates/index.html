@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Задачи{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h4 class="mb-1">Главная</h4>
+    <div class="text-muted">Создано задач: <strong>{{ tasks_count }}</strong></div>
+  </div>
+
+  <a class="btn btn-primary" href="{{ url_for('tasks.get_all_tasks') }}">
+    Перейти к задачам
+  </a>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Добавить задачу</h5>
+
+        <form method="post" action="{{ url_for('tasks.add_task') }}">
+          <div class="mb-3">
+            <label class="form-label">Название</label>
+            <input name="title" class="form-control" placeholder="Например: Учить английский" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Описание</label>
+            <textarea name="description" class="form-control" rows="3" placeholder="Коротко: 20 минут, слова + speaking"></textarea>
+          </div>
+
+          <button class="btn btn-primary w-100">Добавить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h4 class="mb-0">Список задач</h4>
+      <span class="badge text-bg-secondary">{{ tasks|length }} шт.</span>
+    </div>
+
+    {% if tasks %}
+      <div class="vstack gap-3">
+        {% for t in tasks %}
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h5 class="mb-1">{{ t.title }}</h5>
+                </div>
+
+                <form method="post" action="{{ url_for('tasks.delete_task_route', task_id=t.id) }}">
+                  <button class="btn btn-outline-danger btn-sm">Удалить</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info">Пока задач нет. Добавь первую.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

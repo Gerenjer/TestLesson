@@ -1,4 +1,4 @@
-from database.db_settings import db
+from backend.database.db_settings import db
 
 
 class Task(db.Model):
